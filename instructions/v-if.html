@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if & v-else & v-show</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-if & v-else & v-show</h1>
+    <hr>
+    <div id="app">
+        <div v-if='isLogin'>Welcome!</div>
+        <div v-else>Please log in!</div>
+        <!-- 
+            v-if:判断是否加载,可以减轻服务器压力,在需要时加载
+            v-show:调整css display属性,可以使客户端操作更加流畅
+         -->
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{
+            isLogin:false
+        }
+    })
+</script>
+</html>
