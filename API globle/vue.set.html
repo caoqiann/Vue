@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>helloworld</title>
+    <title>vue.set</title>
     <script type = "text/javascript" src="../assets/js/vue.js"></script>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>vue.set</h1>
     <hr>
     <div id="app">
         {{count}}
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+        
     </div>
+   <p><button onclick="add();">add</button></p> 
 </body>
 <script type="text/javascript">
+    function add(){
+       // Vue.set(outData,'count',2);
+       // app.count++;
+       // outData.count++;
+
+       //vue无法监视到数组下标和长度的改变，所以用vue.set方法
+       // app.arr[1]='ddd';
+        Vue.set(app.arr,1,'fff');
+    }
+
+//在构造器外部声明数据,再赋值给构造器
 var outData={
     count:1,
-    goods:"car"
+    goods:"car",
+    arr:['aaa','bbb','ccc']
 }
     var app = new Vue({
         el:'#app',
