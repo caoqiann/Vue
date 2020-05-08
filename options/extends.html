@@ -15,18 +15,17 @@
     </div>
 </body>
 <script type="text/javascript">
-    var addConsole={
-            updated:function(){
-                console.log('数据变化:'+this.num);
+    var extendObj={
+        updated:function(){
+            console.log('扩展updated')
+        },
+        methods:{
+            add:function(){
+                console.log('被扩展方法add');
+                this.num++;
             }
         }
-
-        Vue.mixin({
-            updated:function(){
-                console.log("全局UPDATED");
-            }
-        })
-
+    }
     var app = new Vue({
         el:'#app',
         data:{
@@ -34,14 +33,15 @@
         },
         updated:function(){
             //自定义updated先执行 原生updated后执行
-            console.log("原生UPDATED");
+            console.log("原生updated");
         },
         methods:{
             add:function(){
+                console.log('原生方法add');
                 this.num++;
             }
         },
-        mixins:[addConsole]
+       extends:extendObj
     })
 </script>
 </html>
