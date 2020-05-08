@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch Option</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>watch Option</h1>
+    <hr>
+    <div id="app">
+        <p>今日温度:{{temperature}}℃</p>
+        <p>穿衣建议:{{dress}}</p>
+        <p>
+            <button @click="tempUp">升高温度</button>
+            <button @click="tempDown">降低温度</button>
+        </p>
+    </div>
+</body>
+<script type="text/javascript">
+    var dressArr=['T恤短袖','夹克长裙','羽绒服'];
+    var app = new Vue({
+        el:'#app',
+        data:{
+           temperature:14,
+           dress:'夹克长裙'
+        },
+        methods:{
+            tempUp:function(){
+                this.temperature += 5;
+            },
+            tempDown:function(){
+                this.temperature -= 5;
+            }
+        },
+        //在构造器中写watch监听
+        // watch:{
+        //     temperature:function(newVal,oldVal){
+        //         if(newVal>=26){
+        //             this.dress = dressArr[0];
+        //         }else if(newVal<26 && newVal>0){
+        //             this.dress = dressArr[1];
+        //         }else{
+        //             this.dress = dressArr[2];
+        //         }
+        //     }
+        // }
+    })
+    //在构造器外部进行watch监听
+    app.$watch('temperature',function(newVal,oldVal){
+        if(newVal>=26){
+           this.dress = dressArr[0];
+        }else if(newVal<26 && newVal>0){
+           this.dress = dressArr[1];
+        }else{
+           this.dress = dressArr[2];
+             }              
+    })
+</script>
+</html>
