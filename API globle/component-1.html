@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-1</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component-1</h1>
+    <hr>
+    <div id="app">
+        <!-- 自定义标签不能大写 -->
+        <newtag></newtag>
+        <newtag2></newtag2>
+    </div>
+</body>
+<script type="text/javascript">
+    //指令自定义的是标签属性,组件自定义的是标签
+    Vue.component('newtag',{
+        template:`<div style="color:red">全局newtag组件</div>`
+    })
+    //即使是定义全局标签 也得写在new Vue之中的才能生效
+    var app = new Vue({
+        el:'#app'  ,
+        components:{
+            "newtag2":{
+                template:`<div style="color:green">局部newtag2组件</div>`
+            }
+        }
+    })
+    
+</script>
+</html>

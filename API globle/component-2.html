@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-2</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component-2</h1>
+    <hr>
+    <div id="app">
+        <!-- 自定义标签不能大写 -->
+        
+        <newtag2 :from-here="message"></newtag2>
+    </div>
+</body>
+<script type="text/javascript">
+   
+   
+    var app = new Vue({
+        el:'#app'  ,
+        data:{
+            message:'inside'
+        },
+        components:{
+            "newtag2":{
+                //vue不支持form-here中的- 用驼峰命名法代替
+                template:`<div style="color:green">newtag from {{fromHere}}</div>`,
+                
+                props:['fromHere']
+            }
+        }
+    })
+    
+</script>
+</html>
