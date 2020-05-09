@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot content extend Demo</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Slot content extend Demo</h1>
+    <hr>
+    <div id="app">
+        <newtag>
+            <span slot="webUrl">{{newtagData.webUrl}}</span>
+            <span slot="netName">{{newtagData.netName}}</span>
+            <span slot="skill">{{newtagData.skill}}</span>
+        </newtag>
+    </div>
+
+    <template id="temp">
+        <div>
+            <!-- 必须放在一个div中才生效,slot标签用来接收数据 -->
+            <p>网站地址:<slot name="webUrl"></slot></p>
+            <p>网站名称:<slot name="netName"></slot></p>
+            <p>网站功能:<slot name="skill"></slot></p>
+        </div>
+        
+    </template>
+</body>
+<script type="text/javascript">
+    var newtag={
+        template:"#temp"
+    }
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            newtagData:{
+                webUrl:'http://www.baidu.com',
+                netName:'百度',
+                skill:'search'
+            }
+        },
+        components:{
+            "newtag":newtag
+        }
+    })
+</script>
+</html>

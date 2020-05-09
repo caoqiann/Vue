@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example methods Demo</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+    <script type = "text/javascript" src="../assets/js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h1>example methods Demo</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello world!'
+        },
+        //只有在mounted和updated中才可以使用jquary进行挂载
+        mounted:function(){
+            $("#app").html('this is jQuary');
+        },
+        methods:{
+            add:function(){
+                console.log("调用了构造器内部ADD方法");
+            }
+        }
+    })
+
+    app.add();
+</script>
+</html>

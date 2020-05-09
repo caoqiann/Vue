@@ -10,7 +10,7 @@
     <h1>mixins Option</h1>
     <hr>
     <div id="app">
-       <p>{{num}}</p> 
+       <p>${ num }</p> 
        <p><button @click="add">add</button></p>
     </div>
 </body>
@@ -20,6 +20,7 @@
             console.log('扩展updated')
         },
         methods:{
+            //如果方法名相同 则会执行构造器中的方法
             add:function(){
                 console.log('被扩展方法add');
                 this.num++;
@@ -41,7 +42,10 @@
                 this.num++;
             }
         },
-       extends:extendObj
+        //扩展只能放对象 不能放数组
+       extends:extendObj,
+       //当现有插值形式与默认形式有冲突可以进行修改
+       delimiters:['$[',']']
     })
 </script>
 </html>

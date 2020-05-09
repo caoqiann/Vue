@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example03</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>example03</h1>
+    <hr>
+
+    <div id="app">
+        {{num}}
+        <p><button @click="add">add</button></p>
+    </div>
+
+    <p><button onclick="reduce()">reduce</button></p>
+    <p><button onclick="reduceOnce()">reduceOnce</button></p>
+    <p><button onclick="off()">off</button></p>
+</body>
+<script type="text/javascript">
+    var app = new Vue({   
+        el:'#app',
+        data:{
+           num:1
+        },
+        methods:{
+            add:function(){
+                this.num++;
+            }
+        }
+    });
+
+    //在构造器外部添加事件 可以调用构造器内部的事件 
+    app.$on("reduce",function(){
+        console.log("执行了reduce方法");
+        this.num--;
+    })
+    //只能执行一次的事件
+    app.$once('reduceOnce',function(){
+        console.log('执行了reduceOnce方法');
+        this.num--;
+    })
+
+    function reduce(){
+        app.$emit("reduce");
+    }
+
+    function reduceOnce(){
+        app.$emit('reduceOnce');
+    }
+
+    //关闭事件 参数是要关闭的函数
+    function off(){
+        app.$off('reduce');
+    }
+</script>
+</html>

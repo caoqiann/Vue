@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example methods Demo</title>
+    <script type = "text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>example methods Demo</h1>
+    <hr>
+    <div id="app"> </div>
+    <p><button onclick="destroy()">卸载</button></p>    
+    <p><button onclick="reload()">刷新</button></p>    
+    <p><button onclick="tick()">更改数据</button></p>    
+   
+</body>
+<script type="text/javascript">
+   var extendObj = Vue.extend({
+    template:`<p>{{message}}</p>`,
+    //在扩展时需要在function的return中赋值 与构造器有区别
+    data:function(){
+        return{
+            message:'hello'
+        }
+    },
+    mounted:function(){
+        console.log("mounted被创建");
+    },
+    destroyed:function(){
+        console.log("destroy已被销毁");
+    },
+    updated:function(){
+        console.log("update更新之后");
+    }
+    
+   })
+   //新建一个对象并挂载到app上
+   var vm = new extendObj().$mount('#app');
+
+   function destroy(){
+       vm.$destroy();
+   }
+
+   function reload(){
+       vm.$forceUpdate();
+   }
+
+   //数据修改方法
+   function tick(){
+       //更改了message
+       vm.message="update message info";
+       //数据更新后回调
+       vm.$nextTick(function(){
+           console.log('message更新结束后被调用');
+       })
+   }
+</script>
+</html>
